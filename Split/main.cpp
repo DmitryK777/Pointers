@@ -1,4 +1,4 @@
-// Split
+ï»¿// Split
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -28,7 +28,7 @@ void main()
 
 	FillRand(arr, n);
 
-	cout << "Èñõîäíûé ìàññèâ:" << endl;
+	cout << "Ð˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²:" << endl;
 	Print(arr, n);
 	
 	int even_number = 0;
@@ -36,8 +36,8 @@ void main()
 
 	TestOfArrMembers(arr, n, even_number, odd_number);
 	
-	cout << "Êîëè÷åñòâî ÷¸òíûõ ÷ëåíîâ: " << even_number << endl;
-	cout << "Êîëè÷åñòâî íå÷¸òíûõ ÷ëåíîâ: " << odd_number << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ‡Ñ‘Ñ‚Ð½Ñ‹Ñ… Ñ‡Ð»ÐµÐ½Ð¾Ð²: " << even_number << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½ÐµÑ‡Ñ‘Ñ‚Ð½Ñ‹Ñ… Ñ‡Ð»ÐµÐ½Ð¾Ð²: " << odd_number << endl;
 	cout << endl;
 	
 	int even_length = 0;
@@ -49,7 +49,7 @@ void main()
 			evenArr = Push_Back(evenArr, even_length, arr[i]);
 		}
 	}
-	cout << "×¸òíûå ÷ëåíû èñõîäíîãî ìàññèâà:" << endl;
+	cout << "Ð§Ñ‘Ñ‚Ð½Ñ‹Ðµ Ñ‡Ð»ÐµÐ½Ñ‹ Ð¸ÑÑ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°:" << endl;
 	Print(evenArr, even_length);
 
 	int odd_length = 0;
@@ -61,7 +61,7 @@ void main()
 			oddArr = Push_Back(oddArr, odd_length, arr[i]);
 		}
 	}
-	cout << "Íå÷¸òíûå ÷ëåíû èñõîäíîãî ìàññèâà:" << endl;
+	cout << "ÐÐµÑ‡Ñ‘Ñ‚Ð½Ñ‹Ðµ Ñ‡Ð»ÐµÐ½Ñ‹ Ð¸ÑÑ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°:" << endl;
 	Print(oddArr, odd_length);
 	
 
