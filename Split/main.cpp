@@ -14,23 +14,64 @@ void FillRand(int arr[], const int n);
 template<typename T>
 void Print(T arr[], const int n);
 
+/*
 void TestOfArrMembers(int arr[], const int n, int& even_number, int& odd_number);
-
 int* Push_Back(int *arr, int& length, int value);
+*/
 
 void main()
 {
 	setlocale(LC_ALL, "Russian");
-	srand(time(NULL));
+	//srand(time(NULL));
 	
 	const int n = 10;
 	int arr[n];
-
 	FillRand(arr, n);
-
 	cout << "Исходный массив:" << endl;
 	Print(arr, n);
+
+	// Вычисляем размеры массивов
+	int even_count = 0;
+	int odd_count = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0) even_count++;
+		else odd_count++;
+	}
+
+	cout << "Количество чётных элементов: " << even_count << endl;
+	cout << "Количество нечётных элементов: " << odd_count << endl;
+	cout << endl;
+
+	// Выделяем память для новых масивов
+	int* even_arr = new int[even_count];
+	int* odd_arr = new int[odd_count];
+
+	// Распределяем значения по разным массивам
+	for (int i = 0, j = 0, k = 0; i < n; i++)
+	{
+		//if (arr[i] % 2 == 0) even_arr[j++] = arr[i];
+		//else odd_arr[k++] = arr[i];
+
+		(arr[i] % 2 == 0 ? even_arr[j++] : odd_arr[k++]) = arr[i];
+	}
+
+	// Выводим полученные массива
+
+	cout << "Массив из чётных элементов:" << endl;
+	Print(even_arr, even_count);
+
+	cout << "Массив из нечётных элементов:" << endl;
+	Print(odd_arr, odd_count);
+
 	
+	delete[] even_arr;
+	delete[] odd_arr;
+	
+
+
+	/*
 	int even_number = 0;
 	int odd_number = 0;
 
@@ -67,7 +108,8 @@ void main()
 
 	delete[] evenArr;
 	delete[] oddArr;
-	
+	*/
+
 }
 
 void FillRand(int arr[], const int n)
@@ -88,6 +130,7 @@ void Print(T arr[], const int n)
 	cout << endl;
 }
 
+/*
 void TestOfArrMembers(int arr[], const int n, int& even_number, int& odd_number)
 {
 	for (int i = 0; i < n; i++) 
@@ -115,3 +158,4 @@ int* Push_Back(int *arr, int& length, int value)
 
 	return arr;
 }
+*/
