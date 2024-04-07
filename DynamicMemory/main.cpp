@@ -8,11 +8,9 @@ using std::endl;
 #define Y 89
 #define y 121
 
-void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
-void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
+template <typename T> void FillRand(T arr[], const int n, int minRand = 0, int maxRand = 100);
+template <typename T> void FillRand(T** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
 
-void FillRand(int** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
-void FillRand(double** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
 
 template<typename T> void Print(const T arr[], const int n);
 template<typename T> void Print(T** arr, const int rows, const int cols);
@@ -197,51 +195,52 @@ void main()
 
 }
 
-void FillRand(int arr[], const int n, int minRand, int maxRand)
-{
-	for (int i = 0; i < n; i++)
-	{
-		*(arr + i) = rand() % (maxRand-minRand) + minRand;
-	}
-}
-
-void FillRand(double arr[], const int n, int minRand, int maxRand)
+template <typename T> void FillRand(T arr[], const int n, int minRand, int maxRand)
 {
 	if (minRand > maxRand)
 	{
-		int buffer = minRand;
+		T buffer = minRand;
 		minRand = maxRand;
 		maxRand = buffer;
 	}
-
-	minRand *= 100;
-	maxRand *= 100;
+	if (typeid(arr) == typeid(double*) || typeid(arr) == typeid(float*))
+	{
+		minRand *= 100;
+		maxRand *= 100;
+	}
 
 	for (int i = 0; i < n; i++)
 	{
-		*(arr + i) = rand() % (maxRand - minRand) + minRand;
-	}
-}
-
-void FillRand(int** arr, const int rows, const int cols, int minRand, int maxRand)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
+		*(arr + i) = rand() % (maxRand-minRand) + minRand;
+		if (typeid(arr) == typeid(double*) || typeid(arr) == typeid(float*))
 		{
-			arr[i][j] = rand() % (maxRand - minRand) + minRand;
+			arr[i] /= 100;
 		}
 	}
 }
 
-void FillRand(double** arr, const int rows, const int cols, int minRand, int maxRand)
+template<typename T> void FillRand(T** arr, const int rows, const int cols, int minRand, int maxRand)
 {
+	if (minRand > maxRand)
+	{
+		T buffer = minRand;
+		minRand = maxRand;
+		maxRand = buffer;
+	}
+
+	if (typeid(arr) == typeid(double**) || typeid(arr) == typeid(float**))
+	{
+		minRand *= 100;
+		maxRand *= 100;
+	}
+
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
 		{
 			arr[i][j] = rand() % (maxRand - minRand) + minRand;
-			arr[i][j] /= 100;
+			if (typeid(arr) == typeid(double**) || typeid(arr) == typeid(float**))arr[i][j] /= 100;
+			
 		}
 	}
 }
