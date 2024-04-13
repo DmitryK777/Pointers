@@ -108,7 +108,7 @@ void main()
 
 
 	delete[] arr;
-#endif
+#endif // DYNAMIC_MEMORY_1
 
 #if defined DYNAMIC_MEMORY_2
 	int rows;
@@ -179,8 +179,8 @@ void main()
 	Print(arr, rows, cols);*/
 	
 	Clear(arr, rows);
-	
-#endif
+#endif // DYNAMIC_MEMORY_2
+
 #ifdef PERFORMANCE_CHECK
 
 	int rows, cols;
