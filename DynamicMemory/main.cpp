@@ -241,9 +241,8 @@ template<typename T> T* Push_Back(T arr[], int& n, T value)
 	T* buffer = new T[n + 1];
 	for (int i = 0; i < n; i++) buffer[i] = arr[i];
 	delete[] arr;
-	arr = buffer;
-	arr[n++] = value;
-	return arr;
+	buffer[n++] = value;
+	return buffer;
 }
 
 template<typename T> T* Push_Front(T* arr, int& n, const T value)
@@ -339,30 +338,40 @@ template <typename T> void Clear(T** arr, const int rows)
 
 template<typename T> T** push_row_back(T** arr, int& rows, const int cols)
 {
+	
 	T** buffer = new T*[rows+1];
 	for (int i = 0; i < rows; ++i) buffer[i] = arr[i];
 	delete[] arr;
 	buffer[rows++] = new T[cols] {};
 	return buffer;
+	
+	
 }
 
 template<typename T> T** pop_row_back(T** arr, int& rows, const int cols)
 {
+	/*
 	T** buffer = new T* [--rows];
 	delete[] arr[rows];
 	for (int i = 0; i < rows; ++i) buffer[i] = arr[i];
 	delete[] arr;
 	return buffer;
+	*/
+	delete[] arr[rows-1];
+	return Pop_Back(arr, rows);
 }
 
 template<typename T> T** push_row_front(T** arr, int& rows, const int cols)
 {
+	
 	T** buffer = new T*[rows + 1];
 	for (int i = 0; i < rows; ++i) buffer[i+1] = arr[i];
 	delete[] arr;
 	buffer[0] = new T[cols] {};
 	++rows;
 	return buffer;
+	
+	//return Push_Front(arr, rows, new T[cols]{});
 }
 
 template<typename T> T** pop_row_front(T** arr, int& rows, const int cols)
@@ -402,25 +411,34 @@ template<typename T> void push_col_back(T** arr, const int rows, int& cols)
 
 	for (int i = 0; i < rows; ++i)
 	{
+		/*
 		T* buffer = new T[cols + 1] {};
 		for (int j = 0; j < cols; ++j) buffer[j] = arr[i][j];
 		buffer[cols] = (T)(((unsigned)rand() % 900)+100) / 100;
 		delete[] arr[i];
 		arr[i] = buffer;
+		*/
+		arr[i] = Push_Back(arr[i], cols, T());
+		cols--;
 	}
 	++cols;
 }
 
 template<typename T> void pop_col_back(T** arr, const int rows, int& cols)
 {
-	--cols;
+	
 	for (int i = 0; i < rows; ++i)
 	{
+		/*
 		T* buffer = new T[cols] {};
 		for (int j = 0; j < cols; ++j) buffer[j] = arr[i][j];
 		delete[] arr[i];
 		arr[i] = buffer;
+		*/
+		arr[i]=Pop_Back(arr[i], cols);
+		cols++;
 	}
+	cols--;
 }
 
 template<typename T> void push_col_front(T** arr, const int rows, int& cols)
